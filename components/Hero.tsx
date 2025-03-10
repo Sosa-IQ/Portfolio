@@ -17,15 +17,12 @@ const Hero = () => {
 
         <div className="justify-between flex relative my-20 z-10 pb-[125]">
             <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col">
-                {/* <h2 className="uppercase tracking-widest text-xs text-center text-blue-100 max-w-80">
-                    Dynamic Web Magic with Next.js
-                </h2> */}
 
                 <TextGenerateEffect
                     className="text-[40px] md:text-5xl lg:text-6xl"
                     words="Hi, I'm Jancarlos Sosa"
                 />
-                <p className="max-w-[40vw] mt-1">
+                <p className="max-w-[40vw] mt-1 font-semibold text-white">
                     Finishing my last semester at the University of Connecticut. I am a Senior, majoring in Computer Science with a focus on Software Engineering. Passionate about creating software that will make a difference in the world. I am ready to dive into the industry, using my skills to create innovative software solutions.
                 </p>
             </div>
