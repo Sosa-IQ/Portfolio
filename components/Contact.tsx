@@ -36,7 +36,7 @@ const Contact = () => {
     };
   return (
     <section className="grid md:grid-cols-2 mt-12 md:mt-12 md:pt-10 lg:pt-10 gap-4 relative overflow-y-clip" id="contact">
-        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500 to-transparent rounded-full h-60 w-60 md:h-96 md:w-96 lg:h-96 lg:w-96 z-0 blur-lg absolute -bottom-[96] md:-bottom-[150] lg:-bottom-[150] left-5 md:left-14 lg:left-8 transform -translate-x-1/2 -translate-1/2"></div>
+        <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-cyan-500 to-transparent rounded-full h-60 w-60 md:h-96 md:w-96 lg:h-96 lg:w-96 z-0 blur-lg absolute -bottom-[4rem] md:-bottom-[5rem] lg:-bottom-[5rem] left-5 md:left-14 lg:left-8 transform -translate-x-1/2 -translate-1/2"></div>
         <div className='z-10 mb-6'>
             <h5 className="text-xl font-bold text-white my-2">
                 Let&apos;s <span className="text-cyan-300">Connect</span>

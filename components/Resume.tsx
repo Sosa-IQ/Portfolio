@@ -1,3 +1,4 @@
+"use client";
 import React from 'react'
 import { InfiniteMovingCards } from './ui/InfiniteMovingCards'
 import { techStack, workExperience } from '@/data'
