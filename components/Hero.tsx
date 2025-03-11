@@ -4,7 +4,7 @@ import { TextGenerateEffect } from './ui/TextGenerateEffect'
 
 const Hero = () => {
   return (
-    <div className="pb-20 pt-36" id="about">
+    <div className="pb-20 pt-10 sm:pt-36 md:pt-36 lg:pt-36 mb-[10rem] md:mb-[8rem] sm:mb-[6rem]" id="about">
         <div>
             <Spotlight className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen" fill="white" />
             <Spotlight className="top-10 left-full h-[80vh] w-[50vw]" fill="purple" />
@@ -15,7 +15,7 @@ const Hero = () => {
             <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100 bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
         </div>
 
-        <div className="justify-between flex relative my-20 z-10 pb-[125]">
+        <div className="justify-between flex relative my-20 z-10">
             <div className="max-w-[89vw] md:max-w-2xl lg:max-w-[60vw] flex flex-col">
 
                 <TextGenerateEffect
