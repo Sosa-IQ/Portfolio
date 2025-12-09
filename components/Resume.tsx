@@ -50,13 +50,13 @@ const Resume = () => {
               </Button>
             ))}
           </div>
-          <a href="/Jancarlos_Sosa_Resume.pdf" download>
+          {/* <a href="/Jancarlos_Sosa_Resume.pdf" download>
             <MagicButton
               title="Download Resume"
               icon={<FaFileDownload />}
               position="right"
             />
-          </a>
+          </a> */}
         </div>
     </div>
   )
