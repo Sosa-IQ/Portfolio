@@ -23,7 +23,7 @@ const Hero = () => {
                     words="Hi, I'm Jancarlos Sosa"
                 />
                 <p className="max-w-[40vw] mt-1 font-semibold text-white">
-                    Finishing my last semester at the University of Connecticut. I am a Senior, majoring in Computer Science with a focus on Software Engineering. Passionate about creating software that will make a difference in the world. I am ready to dive into the industry, using my skills to create innovative software solutions.
+                    I am a Software Engineer, currently working full-time at Infosys. I build and deploy meaningful software applications that make a difference in the world. Currently, I am working on a personal Stock Portfolio web application to help track and analyze trades with the help of AI. Feel free to explore my portfolio and reach out if you'd like to connect!
                 </p>
             </div>
             <div>
