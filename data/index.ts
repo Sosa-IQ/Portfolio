@@ -52,8 +52,8 @@ export const techStack = [
 export const workExperience = [
     {
       id: 1,
-      title: "InStep Intern - Full-Stack Web App",
-      desc: "Assisted in the development of a web-based healthcare platform, using Spring Boot and MySQL to configure and send data to the front-end through RESTful APIs.",
+      title: "Software Engineer - Infosys",
+      desc: "Developed a web-based healthcare platform, using Spring and MySQL to configure RESTful API endpoints, and Angular to create intuitive UI components and webpages.",
       className: "md:col-span-2",
       thumbnail: "/exp1.svg",
     },
