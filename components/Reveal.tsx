@@ -1,5 +1,20 @@
 import type { ReactNode } from "react";
 
-export function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
-  return <div className={className}>{children}</div>;
+type RevealProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  direction?: "rise" | "left" | "right" | "scale" | "diagram";
+};
+
+export function Reveal({ children, className = "", delay = 0, direction = "rise" }: RevealProps) {
+  return (
+    <div
+      className={className}
+      data-scroll={direction}
+      data-scroll-delay={delay || undefined}
+    >
+      {children}
+    </div>
+  );
 }

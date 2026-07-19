@@ -4,7 +4,7 @@ import type { Project } from "@/data/site";
 
 export function ProjectRow({ project }: { project: Project }) {
   return (
-    <article className={`project-row accent-${project.accent}`}>
+    <article className={`project-row accent-${project.accent}`} data-scroll="rise">
       <div className="project-index">{project.index}</div>
       <div className="project-copy">
         <p className="eyebrow">{project.eyebrow}</p>

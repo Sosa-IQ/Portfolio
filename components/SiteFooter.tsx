@@ -13,7 +13,7 @@ export function SiteFooter() {
           <Link href="https://www.linkedin.com/in/jancarlos-sosa/" target="_blank" rel="noreferrer">LinkedIn ↗</Link>
           <Link href="/blog">Writing</Link>
         </div>
-        <p className="footer-meta">© {new Date().getFullYear()} Jancarlos Sosa<br />Bridgeport, Connecticut</p>
+        <p className="footer-meta">© {new Date().getFullYear()} Jancarlos Sosa</p>
       </div>
     </footer>
   );

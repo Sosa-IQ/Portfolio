@@ -35,7 +35,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={submit}>
+    <form className="contact-form" data-scroll="right" onSubmit={submit}>
       <div className="form-row">
         <label><span>Name</span><input name="name" autoComplete="name" minLength={2} maxLength={100} required /></label>
         <label><span>Email</span><input name="email" type="email" autoComplete="email" maxLength={254} required /></label>

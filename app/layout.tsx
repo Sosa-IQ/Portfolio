@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, IBM_Plex_Mono, Manrope } from "next/font/google";
 
+import { ScrollMotion } from "@/components/ScrollMotion";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <div className="ambient-field" aria-hidden="true"><span></span><span></span></div>
+        <ScrollMotion />
         <SiteHeader />
         {children}
         <SiteFooter />

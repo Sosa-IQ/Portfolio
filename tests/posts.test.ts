@@ -12,7 +12,7 @@ async function fixtureDirectory() {
     "private-draft.mdx": `---\ntitle: Private draft\ndescription: Not public\ndate: 2026-07-11\npublished: false\ntags: [Draft]\n---\nPrivate body`,
     "missing-state.mdx": `---\ntitle: Missing state\ndescription: Must fail closed\ndate: 2026-07-12\ntags: [Draft]\n---\nPrivate body`,
     "string-state.mdx": `---\ntitle: String state\ndescription: A string must not publish\ndate: 2026-07-13\npublished: "true"\ntags: [Draft]\n---\nPrivate body`,
-    "invalid-date.mdx": `---\ntitle: Bad date\ndescription: Must not reach RSS\ndate: someday\npublished: true\ntags: [Draft]\n---\nInvalid body`,
+    "invalid-date.mdx": `---\ntitle: Bad date\ndescription: Must not reach the public index\ndate: someday\npublished: true\ntags: [Draft]\n---\nInvalid body`,
   };
   await Promise.all(Object.entries(fixtures).map(([name, source]) => writeFile(path.join(directory, name), source)));
   return directory;
