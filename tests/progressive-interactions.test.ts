@@ -27,6 +27,14 @@ describe("progressive interaction safeguards", () => {
     expect(styles).not.toContain("will-change: transform");
   });
 
+  it("keeps the portrait straight during scroll motion", async () => {
+    const styles = await source("app/globals.css");
+    const portraitRule = styles.match(/html\.motion-ready \.hero-portrait \.portrait-frame \{([^}]*)\}/);
+    expect(portraitRule).not.toBeNull();
+    expect(portraitRule?.[1]).toContain("translate3d(0, calc(var(--hero-scroll, 0) * 42px), 0)");
+    expect(portraitRule?.[1]).not.toContain("rotate(");
+  });
+
   it("fails if a private draft is ever tracked by Git", () => {
     const trackedDrafts = execFileSync("git", ["ls-files", "content/drafts/*"], {
       cwd: root,
