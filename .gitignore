@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# local-only writing drafts — never publish these from the public repository
+/content/drafts/
+
 # next.js
 /.next/
 /out/
