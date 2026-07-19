@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-
 import { HeadshotPlaceholder } from "@/components/HeadshotPlaceholder";
 import { capabilities, publicExperience } from "@/data/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "About", description: "Background, engineering principles, and experience of AI engineer Jancarlos Sosa." };
+export const metadata = pageMetadata(
+  "About",
+  "Background, engineering principles, and experience of AI engineer Jancarlos Sosa.",
+  "/about",
+);
 
 export default function AboutPage() {
   return (

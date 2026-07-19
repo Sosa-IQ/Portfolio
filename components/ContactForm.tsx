@@ -11,7 +11,6 @@ export function ContactForm() {
     setState("sending");
     setMessage("");
     const form = new FormData(event.currentTarget);
-    if (form.get("company")) return setState("sent");
 
     try {
       const response = await fetch("/api/send", {
@@ -21,6 +20,7 @@ export function ContactForm() {
           name: form.get("name"),
           email: form.get("email"),
           message: form.get("message"),
+          company: form.get("company"),
         }),
       });
       const result = await response.json();

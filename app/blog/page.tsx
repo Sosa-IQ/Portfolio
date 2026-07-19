@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 
+import { pageMetadata } from "@/lib/metadata";
 import { getAllPosts } from "@/lib/posts";
 
-export const metadata: Metadata = { title: "Writing", description: "Field notes on agentic systems, applied AI, and software engineering." };
+export const metadata = pageMetadata(
+  "Writing",
+  "Field notes on agentic systems, applied AI, and software engineering.",
+  "/blog",
+);
 
 export default async function BlogPage() {
   const posts = await getAllPosts();

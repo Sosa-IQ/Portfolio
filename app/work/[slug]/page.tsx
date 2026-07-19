@@ -3,13 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { projects } from "@/data/site";
+import { pageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find((item) => item.slug === slug);
-  return project ? { title: project.title, description: project.summary } : {};
+  return project ? pageMetadata(project.title, project.summary, `/work/${project.slug}`) : {};
 }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {

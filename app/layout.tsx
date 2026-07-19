@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.jancarlossosa.com"),
   title: { default: "Jancarlos Sosa — AI Engineer", template: "%s — Jancarlos Sosa" },
   description: "AI engineer building agentic systems, applied AI workflows, and production software with deliberate human controls.",
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Jancarlos Sosa — AI Engineer",
     description: "Agentic systems and production software, built with deliberate human controls.",

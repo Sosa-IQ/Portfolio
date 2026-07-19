@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
-
 import { ProjectRow } from "@/components/ProjectRow";
 import { projects } from "@/data/site";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = { title: "Work", description: "Selected AI systems and software engineering case studies by Jancarlos Sosa." };
+export const metadata = pageMetadata(
+  "Work",
+  "Selected AI systems and software engineering case studies by Jancarlos Sosa.",
+  "/work",
+);
 
 export default function WorkPage() {
   return (
