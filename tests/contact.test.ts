@@ -29,4 +29,14 @@ describe("contact payload validation", () => {
       }).ok,
     ).toBe(false);
   });
+
+  it("rejects control characters that could corrupt email headers", () => {
+    expect(
+      validateContactPayload({
+        email: "visitor@example.com",
+        name: "A Visitor\r\nBcc: attacker@example.com",
+        message: "This message is otherwise long enough to be accepted.",
+      }).ok,
+    ).toBe(false);
+  });
 });

@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     url: "https://www.jancarlossosa.com",
     siteName: "Jancarlos Sosa",
     type: "website",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jancarlos Sosa — AI Engineer",
+    description: "Agentic systems and production software, built with deliberate human controls.",
+    images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
 };

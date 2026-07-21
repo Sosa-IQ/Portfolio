@@ -35,6 +35,7 @@ describe("progressive interaction safeguards", () => {
     expect(portraitRule?.[1]).not.toContain("rotate(");
   });
 
+
   it("fails if a private draft is ever tracked by Git", () => {
     const trackedDrafts = execFileSync("git", ["ls-files", "content/drafts/*"], {
       cwd: root,

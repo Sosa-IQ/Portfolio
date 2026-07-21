@@ -17,7 +17,7 @@ export default function WorkPage() {
         <p>Not a wall of logos. A closer look at the constraints, architecture, and control points behind the systems I build.</p>
       </header>
       <div className="project-list expanded-project-list">
-        {projects.map((project) => <ProjectRow project={project} key={project.slug} />)}
+        {projects.map((project) => <ProjectRow headingLevel="h2" project={project} key={project.slug} />)}
       </div>
     </main>
   );

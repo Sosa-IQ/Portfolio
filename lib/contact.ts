@@ -19,7 +19,9 @@ export function validateContactPayload(payload: unknown): ValidationResult {
   const message = typeof input.message === "string" ? input.message.trim() : "";
   const errors: string[] = [];
 
-  if (name.length < 2 || name.length > 100) errors.push("Name must be 2–100 characters.");
+  if (name.length < 2 || name.length > 100 || /[\u0000-\u001f\u007f]/.test(name)) {
+    errors.push("Name must be 2–100 characters without control characters.");
+  }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     errors.push("Enter a valid email address.");
   }

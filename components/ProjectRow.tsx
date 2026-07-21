@@ -2,13 +2,20 @@ import Link from "next/link";
 
 import type { Project } from "@/data/site";
 
-export function ProjectRow({ project }: { project: Project }) {
+export function ProjectRow({
+  project,
+  headingLevel = "h3",
+}: {
+  project: Project;
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
   return (
     <article className={`project-row accent-${project.accent}`} data-scroll="rise">
       <div className="project-index">{project.index}</div>
       <div className="project-copy">
         <p className="eyebrow">{project.eyebrow}</p>
-        <h3>{project.title}</h3>
+        <Heading>{project.title}</Heading>
         <p className="project-summary">{project.summary}</p>
         <ul className="signal-list">
           {project.signals.map((signal) => <li key={signal}>{signal}</li>)}

@@ -16,7 +16,9 @@ Open `http://localhost:3000`.
 ```bash
 npm test
 npm run lint
+npx tsc --noEmit
 npm run build
+npm audit --omit=dev --audit-level=high
 ```
 
 ## Owner-only writing workflow
@@ -60,8 +62,12 @@ The contact endpoint requires:
 - `FROM_EMAIL`
 - `TO_EMAIL`
 
-The endpoint initializes Resend only at request time, so local and production builds succeed without secrets. Without configuration it returns a safe `503` response. It also enforces same-origin requests, a server-validated honeypot, and a per-instance three-message/ten-minute client-address limit. Configure an edge/WAF rate limit at deployment for distributed enforcement.
+The endpoint initializes Resend only at request time, so local and production builds succeed without secrets. Without configuration it returns a safe `503` response. It supports enhanced JSON submission and a safe no-JavaScript form POST, enforces same-origin requests, rejects unsupported/oversized bodies, validates fields, times out stalled provider calls, uses a server-validated honeypot, and keeps a per-instance three-message/ten-minute fallback limit. A Vercel WAF rate limit is required for distributed enforcement.
+
+## Monitoring
+
+Sentry captures client, server, edge, request, and global render errors through the configured project. Session Replay and default PII collection are disabled; HTTP bodies are excluded, Vercel production traces are sampled at 5%, and preview tracing is disabled in a separate environment. Set `NEXT_PUBLIC_SENTRY_DSN` in Vercel for runtime reporting and `SENTRY_AUTH_TOKEN` to upload source maps. Without the private build token, runtime capture still works but stack traces will be less readable.
 
 ## Deployment
 
-The production site is currently hosted at `https://www.jancarlossosa.com`. Do not deploy or merge the redesign branch without explicit approval.
+The production site is currently hosted at `https://www.jancarlossosa.com`. Do not deploy or merge the redesign branch without explicit approval. See [`DEPLOYMENT.md`](./DEPLOYMENT.md) for owner-only prerequisites, verification, release steps, and rollback.

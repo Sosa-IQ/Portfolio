@@ -10,6 +10,10 @@ const attempts = globalState.__portfolioContactRateLimits ?? new Map<string, Rat
 globalState.__portfolioContactRateLimits = attempts;
 
 export function consumeContactRateLimit(key: string, now = Date.now()): RateLimitResult {
+  for (const [client, entry] of attempts) {
+    if (entry.resetAt <= now) attempts.delete(client);
+  }
+
   const existing = attempts.get(key);
   if (!existing || existing.resetAt <= now) {
     attempts.set(key, { count: 1, resetAt: now + WINDOW_MS });
@@ -29,4 +33,8 @@ export function consumeContactRateLimit(key: string, now = Date.now()): RateLimi
 
 export function resetContactRateLimits() {
   attempts.clear();
+}
+
+export function contactRateLimitEntryCount() {
+  return attempts.size;
 }

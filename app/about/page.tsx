@@ -1,4 +1,4 @@
-import { HeadshotPlaceholder } from "@/components/HeadshotPlaceholder";
+import { HeadshotPortrait } from "@/components/HeadshotPortrait";
 import { capabilities, publicExperience } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -13,7 +13,7 @@ export default function AboutPage() {
     <main id="main-content" className="interior-page shell">
       <header className="about-masthead" data-scroll="rise">
         <div><p className="eyebrow">Profile / 01</p><h1>Engineer by training.<br /><em>Systems thinker</em> by habit.</h1><p className="page-lede">I’m an AI engineer building at the intersection of models, software, and operational reality.</p></div>
-        <HeadshotPlaceholder />
+        <HeadshotPortrait />
       </header>
       <section className="about-principles section-rule" data-scroll="left">
         <p className="eyebrow">How I work / 02</p>

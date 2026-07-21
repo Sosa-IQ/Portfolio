@@ -1,15 +1,21 @@
 import Link from "next/link";
 
 import { ContactForm } from "@/components/ContactForm";
-import { HeadshotPlaceholder } from "@/components/HeadshotPlaceholder";
+import { HeadshotPortrait } from "@/components/HeadshotPortrait";
 import { ProjectRow } from "@/components/ProjectRow";
 import { Reveal } from "@/components/Reveal";
 import { SystemDiagram } from "@/components/SystemDiagram";
 import { capabilities, projects, publicExperience } from "@/data/site";
 import { getAllPosts } from "@/lib/posts";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams?: Promise<{ contact?: string }>;
+}) {
   const posts = await getAllPosts();
+  const contactState = (await searchParams)?.contact;
+  const initialContactStatus = contactState === "sent" || contactState === "error" ? contactState : "idle";
   return (
     <main id="main-content">
       <section className="hero shell">
@@ -25,7 +31,7 @@ export default async function Home() {
             </div>
           </Reveal>
         </div>
-        <Reveal className="hero-portrait" delay={0.15} direction="scale"><HeadshotPlaceholder /></Reveal>
+        <Reveal className="hero-portrait" delay={0.15} direction="scale"><HeadshotPortrait /></Reveal>
         <div className="hero-status">
           <span className="status-light"></span>
           <div><strong>Current focus</strong><p>Reliable agents · human control · useful automation</p></div>
@@ -89,7 +95,7 @@ export default async function Home() {
 
       <section className="contact-section shell section-rule" id="contact">
         <div className="contact-heading" data-scroll="left"><p className="eyebrow">Open channel / 06</p><h2>Have a consequential problem?</h2><p>I’m interested in applied AI roles, thoughtful collaborations, and systems where reliability matters as much as novelty.</p></div>
-        <ContactForm />
+        <ContactForm initialStatus={initialContactStatus} />
       </section>
     </main>
   );

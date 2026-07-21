@@ -32,7 +32,7 @@ export const projects: Project[] = [
     stack: ["Next.js", "FastAPI", "PostgreSQL", "MCP", "Plaid", "AWS"],
     signals: ["Human confirmation for AI writes", "OAuth 2.0 provider", "Live bank synchronization"],
     github: "https://github.com/Sosa-IQ/PFT",
-    live: "https://www.budgitbuddy.com",
+
     accent: "cyan",
   },
   {
@@ -57,9 +57,9 @@ export const projects: Project[] = [
     impact: "Reduced a repetitive multi-account workflow from roughly 50 minutes to seconds.",
     description: "I built the Angular interface and AWS-backed order routing around the Tradier API, with Cognito authentication and token management. It demonstrates the same principle that guides my AI work: automate repetition while preserving explicit human intent.",
     stack: ["Angular", "TypeScript", "AWS Lambda", "API Gateway", "Cognito", "Tradier"],
-    signals: ["Multi-account order fan-out", "Managed authentication", "Production cloud deployment"],
+    signals: ["Multi-account order fan-out", "Managed authentication", "AWS serverless order routing"],
     github: "https://github.com/Sosa-IQ/PSGTrades",
-    live: "https://www.psgtrades.com",
+
     accent: "mint",
   },
 ];

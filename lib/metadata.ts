@@ -14,6 +14,13 @@ export function pageMetadata(title: string, description: string, path: string): 
       url: canonical,
       siteName: "Jancarlos Sosa",
       type: "website",
+      images: ["/opengraph-image"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} — Jancarlos Sosa`,
+      description,
+      images: ["/opengraph-image"],
     },
   };
 }

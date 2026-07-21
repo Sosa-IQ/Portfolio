@@ -2,9 +2,17 @@
 
 import { FormEvent, useState } from "react";
 
-export function ContactForm() {
-  const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [message, setMessage] = useState("");
+type ContactStatus = "idle" | "sent" | "error";
+
+const statusMessages: Record<ContactStatus, string> = {
+  idle: "",
+  sent: "Message received. I’ll respond as soon as I can.",
+  error: "Message could not be sent. Please try again later.",
+};
+
+export function ContactForm({ initialStatus = "idle" }: { initialStatus?: ContactStatus }) {
+  const [state, setState] = useState<ContactStatus | "sending">(initialStatus);
+  const [message, setMessage] = useState(statusMessages[initialStatus]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -35,7 +43,7 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" data-scroll="right" onSubmit={submit}>
+    <form action="/api/send" className="contact-form" data-scroll="right" method="post" onSubmit={submit}>
       <div className="form-row">
         <label><span>Name</span><input name="name" autoComplete="name" minLength={2} maxLength={100} required /></label>
         <label><span>Email</span><input name="email" type="email" autoComplete="email" maxLength={254} required /></label>
