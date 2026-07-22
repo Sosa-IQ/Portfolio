@@ -66,6 +66,16 @@ describe("contact route delivery and abuse controls", () => {
     await expect(response.json()).resolves.toEqual({ ok: true });
   });
 
+  it("identifies contact emails as coming from an AI Engineer", async () => {
+    sendMock.mockResolvedValue({ data: { id: "email_123" }, error: null });
+
+    expect((await POST(contactRequest(validBody))).status).toBe(200);
+    expect(sendMock).toHaveBeenCalledWith(
+      expect.objectContaining({ from: "AI Engineer <portfolio@example.com>" }),
+      expect.any(Object),
+    );
+  });
+
   it("aborts timed-out delivery and reuses the idempotency key on retry", async () => {
     vi.useFakeTimers();
     let providerSignal: AbortSignal | undefined;
