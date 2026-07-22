@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - run: npm run build
+      - name: Verify the Linux image optimizer
+        run: |
+          npm start > /tmp/portfolio-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          content_type=$(curl --fail --silent --show-error --retry 20 --retry-connrefused --retry-delay 1 \
+            --header 'Accept: image/avif,image/webp' \
+            --output /tmp/portrait-optimized \
+            --write-out '%{content_type}' \
+            'http://127.0.0.1:3000/_next/image?url=%2Fimages%2Fjancarlos-sosa-portrait.webp&w=640&q=75'
+          )
+          test -s /tmp/portrait-optimized
+          case "$content_type" in image/*) ;; *) echo "Unexpected optimizer content type: $content_type"; exit 1 ;; esac
+      - run: npm audit --omit=dev --audit-level=high
