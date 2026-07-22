@@ -35,6 +35,17 @@ describe("progressive interaction safeguards", () => {
     expect(portraitRule?.[1]).not.toContain("rotate(");
   });
 
+  it("retains a stable form reference across async contact submission", async () => {
+    const contactForm = await source("components/ContactForm.tsx");
+    const captureIndex = contactForm.indexOf("const formElement = event.currentTarget;");
+    const awaitIndex = contactForm.indexOf("await fetch");
+
+    expect(captureIndex).toBeGreaterThan(-1);
+    expect(captureIndex).toBeLessThan(awaitIndex);
+    expect(contactForm).toContain("new FormData(formElement)");
+    expect(contactForm).toContain("formElement.reset()");
+    expect(contactForm).not.toContain("event.currentTarget.reset()");
+  });
 
   it("fails if a private draft is ever tracked by Git", () => {
     const trackedDrafts = execFileSync("git", ["ls-files", "content/drafts/*"], {

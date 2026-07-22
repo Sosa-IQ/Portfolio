@@ -16,9 +16,10 @@ export function ContactForm({ initialStatus = "idle" }: { initialStatus?: Contac
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const formElement = event.currentTarget;
     setState("sending");
     setMessage("");
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(formElement);
 
     try {
       const response = await fetch("/api/send", {
@@ -33,7 +34,7 @@ export function ContactForm({ initialStatus = "idle" }: { initialStatus?: Contac
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error ?? "Message could not be sent.");
-      event.currentTarget.reset();
+      formElement.reset();
       setState("sent");
       setMessage("Message received. I’ll respond as soon as I can.");
     } catch (error) {
