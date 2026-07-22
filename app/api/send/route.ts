@@ -154,7 +154,7 @@ export async function POST(request: Request) {
     } as NonNullable<Parameters<typeof resend.emails.send>[1]> & { signal: AbortSignal };
     const result = await withTimeout(
       resend.emails.send({
-        from: `AI Engineer <${fromEmail}>`,
+        from: `Portfolio contact <${fromEmail}>`,
         to: [toEmail],
         replyTo: email,
         subject: `Portfolio inquiry from ${name}`,

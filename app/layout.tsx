@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     title: "Jancarlos Sosa — AI Engineer",
-    description: "Agentic systems and production software, built with deliberate human controls.",
+    description: "AI Engineer",
     url: "https://www.jancarlossosa.com",
     siteName: "Jancarlos Sosa",
     type: "website",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Jancarlos Sosa — AI Engineer",
-    description: "Agentic systems and production software, built with deliberate human controls.",
+    description: "AI Engineer",
     images: ["/opengraph-image"],
   },
   robots: { index: true, follow: true },
