@@ -59,6 +59,12 @@ describe("production release contract", () => {
     expect(metadata.twitter).toMatchObject({ card: "summary_large_image", images: ["/opengraph-image"] });
   });
 
+  it("identifies the homepage as AI Engineer in link previews", async () => {
+    const layout = await source("app/layout.tsx");
+    const openGraph = layout.match(/openGraph:\s*{([\s\S]*?)\n\s*},\n\s*twitter:/)?.[1] ?? "";
+    expect(openGraph).toContain('description: "AI Engineer"');
+  });
+
   it("pins the validated Node runtime and runs all release checks in CI", async () => {
     const packageJson = JSON.parse(await source("package.json"));
     expect(packageJson.engines?.node).toBe("22.x");

@@ -66,12 +66,12 @@ describe("contact route delivery and abuse controls", () => {
     await expect(response.json()).resolves.toEqual({ ok: true });
   });
 
-  it("identifies contact emails as coming from an AI Engineer", async () => {
+  it("retains the Portfolio contact sender identity", async () => {
     sendMock.mockResolvedValue({ data: { id: "email_123" }, error: null });
 
     expect((await POST(contactRequest(validBody))).status).toBe(200);
     expect(sendMock).toHaveBeenCalledWith(
-      expect.objectContaining({ from: "AI Engineer <portfolio@example.com>" }),
+      expect.objectContaining({ from: "Portfolio contact <portfolio@example.com>" }),
       expect.any(Object),
     );
   });
