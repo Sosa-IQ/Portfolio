@@ -8,13 +8,37 @@ import { pageMetadata } from "../lib/metadata";
 const root = process.cwd();
 const source = (relativePath: string) => readFile(path.join(root, relativePath), "utf8");
 
+function extendedWebpMetadata(buffer: Buffer) {
+  expect(buffer.subarray(0, 4).toString("ascii")).toBe("RIFF");
+  expect(buffer.subarray(8, 12).toString("ascii")).toBe("WEBP");
+
+  for (let offset = 12; offset + 8 <= buffer.length; ) {
+    const type = buffer.subarray(offset, offset + 4).toString("ascii");
+    const size = buffer.readUInt32LE(offset + 4);
+    if (type === "VP8X") {
+      const payload = offset + 8;
+      return {
+        hasAlpha: Boolean(buffer[payload] & 0x10),
+        width: buffer.readUIntLE(payload + 4, 3) + 1,
+        height: buffer.readUIntLE(payload + 7, 3) + 1,
+      };
+    }
+    offset += 8 + size + (size % 2);
+  }
+
+  throw new Error("Expected an extended WebP portrait");
+}
+
 describe("production release contract", () => {
   it("ships an optimized transparent portrait rather than placeholder copy", async () => {
     const portrait = await source("components/HeadshotPortrait.tsx");
+    const assetPath = path.join(root, "public/images/jancarlos-sosa-portrait.webp");
+    const asset = extendedWebpMetadata(await readFile(assetPath));
     expect(portrait).toContain("next/image");
     expect(portrait).toContain("/images/jancarlos-sosa-portrait.webp");
     expect(portrait).not.toMatch(/pending|placeholder/i);
-    await expect(access(path.join(root, "public/images/jancarlos-sosa-portrait.webp"))).resolves.toBeUndefined();
+    expect(asset).toEqual({ width: 800, height: 1000, hasAlpha: true });
+    await expect(access(assetPath)).resolves.toBeUndefined();
   });
 
   it("does not advertise unhealthy live project endpoints", () => {
